@@ -9,11 +9,11 @@ A Java implementation practices of the neural network techniques, which contains
 * Stacked Denoising Autoencoder
 * Convolutional Neural Networks
 
-`com.isaac` contains several algorithms implemented by full Java.
+`com.isaac.java` contains several algorithms implemented by full Java.
 
-`nd4j.isaac` contains algorithms implemented by ND4J.
+`com.isaac.nd4j` contains algorithms implemented by ND4J.
 
-`dl4j.isaac` contains some algorithms implementation by dl4j.
+`com.isaac.dl4j` contains some algorithms implementation by dl4j.
 
 `org.dl4j` contains some algorithms from [dl4j-examples](https://github.com/deeplearning4j/dl4j-examples), provided by deeplearning4j.
 
