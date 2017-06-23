@@ -1,4 +1,4 @@
-package com.isaac.dl4j;
+package com.isaac.dl4j.kaggle;
 
 import org.datavec.api.records.reader.RecordReader;
 import org.datavec.api.records.reader.impl.csv.CSVRecordReader;
@@ -31,6 +31,9 @@ import java.io.*;
 /**
  * Created by zhanghao on 21/6/17.
  * @author ZHANG HAO
+ * Link: https://www.kaggle.com/uciml/glass
+ * Desciption: This is a Glass Identification Data Set from UCI.
+ *      It contains 10 attributes including id. The response is glass type(discrete 7 values)...
  */
 public class GlassClassification {
     public static final Logger log = LoggerFactory.getLogger(GlassClassification.class);
