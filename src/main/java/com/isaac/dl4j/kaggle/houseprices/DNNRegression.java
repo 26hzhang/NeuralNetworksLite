@@ -25,7 +25,7 @@ import java.io.*;
  *
  * Kaggle Website:
  * House Prices: Advanced Regression Techniques link: https://www.kaggle.com/c/house-prices-advanced-regression-techniques
- * Data Pre-process (cleaning, one-hot encoding, pca, log) is done by Python (cause Python is much more friendly
+ * Data Pre-process (cleaning, one-hot encoding, pca, log transform) is done by Python (cause Python is much more friendly
  * in data preprocess)
  */
 public class DNNRegression {

@@ -24,13 +24,10 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <deeplearning4j.version>0.8.0</deeplearning4j.version>
-        <slf4j.version>1.7.21</slf4j.version>
-        <guava.version>18.0</guava.version>
-        <jfreechart.version>1.0.13</jfreechart.version>
-        <jcommon.version>1.0.24</jcommon.version>
     </properties>
 
     <dependencies>
+        <!-- DL4J and ND4J related dependencies -->
         <dependency>
             <groupId>org.nd4j</groupId>
             <artifactId>nd4j-api</artifactId>
@@ -61,21 +58,27 @@
             <artifactId>datavec-dataframe</artifactId>
             <version>${deeplearning4j.version}</version>
         </dependency>
+        <!-- Spark related dependencies -->
         <dependency>
             <groupId>org.apache.spark</groupId>
-            <artifactId>spark-core_2.11</artifactId>
-            <version>2.1.0</version>
-            <scope>provided</scope>
+            <artifactId>spark-core_2.10</artifactId>
+            <version>2.1.1</version>
         </dependency>
+        <dependency>
+            <groupId>org.datavec</groupId>
+            <artifactId>datavec-spark_2.11</artifactId>
+            <version>0.8.0_spark_2</version>
+        </dependency>
+        <!-- Other usages -->
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-simple</artifactId>
-            <version>${slf4j.version}</version>
+            <version>1.7.21</version>
         </dependency>
         <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
-            <version>${guava.version}</version>
+            <version>18.0</version>
         </dependency>
         <dependency>
             <groupId>org.apache.httpcomponents</groupId>
@@ -90,14 +93,13 @@
         <dependency>
             <groupId>jfree</groupId>
             <artifactId>jfreechart</artifactId>
-            <version>${jfreechart.version}</version>
+            <version>1.0.13</version>
         </dependency>
         <dependency>
             <groupId>org.jfree</groupId>
             <artifactId>jcommon</artifactId>
-            <version>${jcommon.version}</version>
+            <version>1.0.24</version>
         </dependency>
     </dependencies>
-
 
 </project>

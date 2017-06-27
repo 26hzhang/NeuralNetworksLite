@@ -2,6 +2,7 @@
   <dictionary name="zhanghao">
     <words>
       <w>ndarray</w>
+      <w>preprocess</w>
     </words>
   </dictionary>
 </component>

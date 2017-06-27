@@ -72,7 +72,6 @@ dataPCA = pca.transform(data)
 train = dataPCA[:1460]
 test = dataPCA[1460:]
 
-#lets_try(train,labels)
 cv = KFold(n_splits=5,shuffle=True,random_state=45)
 
 parameters = {'alpha': [1000,100,10],
