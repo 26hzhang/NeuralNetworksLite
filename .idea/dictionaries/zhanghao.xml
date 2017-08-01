@@ -5,10 +5,12 @@
       <w>autoencoder</w>
       <w>backprop</w>
       <w>consecuitive</w>
+      <w>conv</w>
       <w>convolutional</w>
       <w>dactivations</w>
       <w>datasets</w>
       <w>denoising</w>
+      <w>encdec</w>
       <w>freqs</w>
       <w>hgiven</w>
       <w>idxs</w>
@@ -22,14 +24,18 @@
       <w>ndarray</w>
       <w>perc</w>
       <w>perceptron</w>
+      <w>perceptrons</w>
       <w>pred</w>
       <w>preprocess</w>
       <w>pretrain</w>
       <w>propdown</w>
       <w>propup</w>
+      <w>rnns</w>
+      <w>rosenblatt</w>
       <w>softmax</w>
       <w>tbptt</w>
       <w>vals</w>
+      <w>vectorize</w>
       <w>vgiven</w>
       <w>vram</w>
     </words>

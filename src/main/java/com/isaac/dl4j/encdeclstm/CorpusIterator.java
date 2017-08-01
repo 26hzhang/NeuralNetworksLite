@@ -34,7 +34,7 @@ public class CorpusIterator implements MultiDataSetIterator {
     private int dictSize;
     private int rowSize;
 
-    public CorpusIterator(List<List<Double>> corpus, int batchSize, int batchesPerMacrobatch, int dictSize, int rowSize) {
+    CorpusIterator(List<List<Double>> corpus, int batchSize, int batchesPerMacrobatch, int dictSize, int rowSize) {
         this.corpus = corpus;
         this.batchSize = batchSize;
         this.batchesPerMacrobatch = batchesPerMacrobatch;
@@ -109,7 +109,7 @@ public class CorpusIterator implements MultiDataSetIterator {
 
     @Override
     public void setPreProcessor(MultiDataSetPreProcessor preProcessor) {
-
+        throw new UnsupportedOperationException("Not Implemented");
     }
 
     @Override

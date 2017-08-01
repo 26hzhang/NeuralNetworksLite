@@ -1,21 +1,13 @@
 # Neural Networks Lite
-A Java implementation practices of the neural network techniques, which contains several neural networks algorithms:
-* Perceptrons
+A Java implementation practice of the neural network techniques, which contains several neural networks algorithms:
+* (Multi-Layer) Perceptrons
 * Logistic Regression
-* Multi-Layer Perceptrons
 * Restricted Boltzmann Machines
 * Deep Belief Nets
 * Denoising Autoencoder
 * Stacked Denoising Autoencoder
 * Convolutional Neural Networks
-
-`com.isaac.java` contains several algorithms implemented by full Java.
-
-`com.isaac.nd4j` contains algorithms implemented by ND4J.
-
-`com.isaac.dl4j` contains some algorithms implementation by dl4j.
-
-`org.dl4j` contains some algorithms from [dl4j-examples](https://github.com/deeplearning4j/dl4j-examples), provided by deeplearning4j.
+* Recurrent Neural Networks (LSTM)
 
 As well as some practical application examples to deal with some problems, like the classification of Iris data set, MNIST handwriting data, different animal images and etc.
 

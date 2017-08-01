@@ -16,7 +16,7 @@ import java.util.Map;
 import java.util.Set;
 
 public class CorpusProcessor {
-    public static final String SPECIALS = "!\"#$;%^:?*()[]{}<>«»,.–—=+…";
+    static final String SPECIALS = "!\"#$;%^:?*()[]{}<>«»,.–—=+…";
     private Set<String> dictSet = new HashSet<>();
     private Map<String, Double> freq = new HashMap<>();
     private Map<String, Double> dict = new HashMap<>();
@@ -24,17 +24,17 @@ public class CorpusProcessor {
     private InputStream is;
     private int rowSize;
 
-    public CorpusProcessor(String filename, int rowSize, boolean countFreq) throws FileNotFoundException {
+    CorpusProcessor(String filename, int rowSize, boolean countFreq) throws FileNotFoundException {
         this(new FileInputStream(filename), rowSize, countFreq);
     }
 
-    public CorpusProcessor(InputStream is, int rowSize, boolean countFreq) {
+    CorpusProcessor(InputStream is, int rowSize, boolean countFreq) {
         this.is = is;
         this.rowSize = rowSize;
         this.countFreq = countFreq;
     }
 
-    public void start() throws IOException {
+    void start() throws IOException {
         try (BufferedReader br = new BufferedReader(new InputStreamReader(is, StandardCharsets.UTF_8))) {
             String line;
             String lastName = "";
@@ -47,9 +47,9 @@ public class CorpusProcessor {
                         if (!lastLine.isEmpty()) {
                             // if the previous line doesn't end with a special symbol, append a comma and the current line
                             if (!SPECIALS.contains(lastLine.substring(lastLine.length() - 1))) {
-                                lastLine += ",";
+                                lastLine = lastLine.concat(",");
                             }
-                            lastLine += " " + lineSplit[4];
+                            lastLine = lastLine.concat(" " + lineSplit[4]);
                         } else {
                             lastLine = lineSplit[4];
                         }
@@ -73,7 +73,7 @@ public class CorpusProcessor {
     }
 
     // here we not only split the words but also store punctuation marks
-    protected void tokenizeLine(String lastLine, Collection<String> resultCollection, boolean addSpecials) {
+    void tokenizeLine(String lastLine, Collection<String> resultCollection, boolean addSpecials) {
         String[] words = lastLine.split("[ \t]");
         for (String word : words) {
             if (!word.isEmpty()) {
@@ -121,11 +121,11 @@ public class CorpusProcessor {
         return dictSet;
     }
 
-    public Map<String, Double> getFreq() {
+    Map<String, Double> getFreq() {
         return freq;
     }
 
-    public void setDict(Map<String, Double> dict) {
+    void setDict(Map<String, Double> dict) {
         this.dict = dict;
     }
 
@@ -136,7 +136,7 @@ public class CorpusProcessor {
      * @param words sequence of words
      * @return list of indices.
      */
-    protected final List<Double> wordsToIndexes(final Iterable<String> words) {
+    final List<Double> wordsToIndexes(final Iterable<String> words) {
         int i = rowSize;
         final List<Double> wordIdxs = new LinkedList<>();
         for (final String word : words) {

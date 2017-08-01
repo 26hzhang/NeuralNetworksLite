@@ -56,8 +56,8 @@ public class StockClosePricePrediction {
         log.info("saving model...");
         File locationToSave = new File("src/main/resources/StockPriceLSTM.zip");
         //Updater: i.e., the state for Momentum, RMSProp, Adagrad etc. Save this if you want to train your network more in the future
-        boolean saveUpdater = true;
-        ModelSerializer.writeModel(net, locationToSave, saveUpdater);
+        //boolean saveUpdater = true;
+        ModelSerializer.writeModel(net, locationToSave, true);
         
         // load model
         //log.info("load model...");

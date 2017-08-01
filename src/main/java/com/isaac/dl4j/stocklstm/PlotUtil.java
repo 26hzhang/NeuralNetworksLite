@@ -12,9 +12,9 @@ import org.jfree.data.xy.XYSeriesCollection;
 
 import javax.swing.*;
 
-public class PlotUtil {
+class PlotUtil {
 
-	public static void plot (double[] predicts, double[] actuals) {
+	static void plot (double[] predicts, double[] actuals) {
 		double[] index = new double[predicts.length];
 		for (int i = 0; i < predicts.length; i++)
 			index[i] = i;
