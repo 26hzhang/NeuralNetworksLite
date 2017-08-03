@@ -1,24 +1,23 @@
-
 This is a seq2seq encoder-decoder LSTM model made according to Google's paper
 href="https://arxiv.org/abs/1506.05869" A Neural Conversational Model.
- 
+
 The model tries to predict the next dialog line using the provided one. It
 learns on the
- 
+
 "https://www.cs.cornell.edu/~cristian/Cornell_Movie-Dialogs_Corpus.html" Cornell Movie Dialogs corpus.
- 
+
 Unlike simple char RNNs this model is more
 sophisticated and theoretically, given enough time and data, can deduce facts
 from raw text. Your mileage may vary. This particular network architecture is
 based on AdditionRNN but changed to be used with a huge amount of possible
 tokens (10-40k) instead of just digits.
- 
+
 Use the get_data.sh script to download, extract and optimize the train data.
 It's been only tested on Linux, it could work on OS X or even on Windows 10
 in the Ubuntu shell.
- 
+
 Special tokens used:
- 
+
 <unk> - replaces any word or other token that's not in
 the dictionary (too rare to be included or completely unknown)
 <eos> - end of sentence, used only in the output to
@@ -26,11 +25,11 @@ stop the processing; the model input and output length is limited by the
 ROW_SIZE constant.
 <go> - used only in the decoder input as the first
 token before the model produced anything
- 
+
 The architecture is like this:
- 
+
 Input => Embedding Layer => Encoder => Decoder => Output (softmax)
- 
+
 The encoder layer produces a so called "thought vector" that contains a
 neurally-compressed representation of the input. Depending on that vector the
 model produces different sentences even if they start with the same token.
@@ -41,16 +40,16 @@ use the token that the model produced the last time. On the training stage
 everything is simple, we apriori know the desired output so the decoder input
 would be the same token set prepended with the <go> token
 and without the last <eos> token. Example:
- 
+```
 Input: "how" "do" "you" "do" "?"
 Output: "I'm" "fine" "," "thanks" "!" "<eos>"
 Decoder: "<go>" "I'm" "fine" "," "thanks" "!"
- 
+```
 Actually, the input is reversed as per
- 
+
 "https://papers.nips.cc/paper/5346-sequence-to-sequence-learning-with-neural-networks.pdf"
 Sequence to Sequence Learning with Neural Networks,
- 
+
 the most important words are
 usually in the beginning of the phrase and they would get more weight if
 supplied last (the model "forgets" tokens that were supplied "long ago", i.e.
@@ -68,13 +67,13 @@ loss metric and can compute gradients for the backward pass) on the previous
 step (or <go> for the very first step). These two vectors are simply
 concatenated by the merge vertex. The decoder's output goes to the softmax
 layer and that's it.
- 
+
 The test phase is much more tricky. We don't know the decoder input because
 we don't know the output yet (unlike in the train phase), it could be
 anything. So we can't use methods like outputSingle() and have to do some
 manual work. Actually, we can but it would require full restarts of the
 entire process, it's super slow and ineffective.
- 
+
 First, we do a single feed forward pass for the input with a single decoder
 element, <go>. We don't need the actual activations except
 the "thought vector". It resides in the second merge vertex input (named
@@ -87,10 +86,9 @@ layer and then we sample it randomly (not with argMax(), it tends to give a
 lot of same tokens in a row). The resulting token is looked up in the
 dictionary, printed to the {@link System#out} and then it goes to the next
 iteration as the decoder input and so on until we get <eos>.
- 
+
 To continue the training process from a specific batch number, enter it when
 prompted; batch numbers are printed after each processed macrobatch. If
 you've changed the minibatch size after the last launch, recalculate the
 number accordingly, i.e. if you doubled the minibatch size, specify half of
 the value and so on.
- 
