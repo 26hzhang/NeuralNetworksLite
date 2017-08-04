@@ -11,10 +11,12 @@
       <w>datasets</w>
       <w>denoising</w>
       <w>encdec</w>
+      <w>encdeclstm</w>
       <w>freqs</w>
       <w>hgiven</w>
       <w>idxs</w>
       <w>lenet</w>
+      <w>linalg</w>
       <w>lstm</w>
       <w>macrobatch</w>
       <w>macrobatches</w>

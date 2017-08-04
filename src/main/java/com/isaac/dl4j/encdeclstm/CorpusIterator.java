@@ -1,7 +1,6 @@
 package com.isaac.dl4j.encdeclstm;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -75,8 +74,7 @@ public class CorpusIterator implements MultiDataSetIterator {
             rowPred.add(1.0); // add <eos> token
             // replace the entire row in "input" using NDArrayIndex, it's faster than putScalar(); input is NOT made of
             // one-hot vectors because of the embedding layer that accepts token indexes directly
-            input.put(new INDArrayIndex[] { NDArrayIndex.point(j), NDArrayIndex.point(0), // TODO error
-                            NDArrayIndex.interval(0, rowIn.size()) },
+            input.put(new INDArrayIndex[] { NDArrayIndex.point(j), NDArrayIndex.point(0), NDArrayIndex.interval(0, rowIn.size()) },
                     Nd4j.create(ArrayUtils.toPrimitive(rowIn.toArray(new Double[0]))));
             inputMask.put(new INDArrayIndex[] { NDArrayIndex.point(j), NDArrayIndex.interval(0, rowIn.size()) },
                     Nd4j.ones(rowIn.size()));

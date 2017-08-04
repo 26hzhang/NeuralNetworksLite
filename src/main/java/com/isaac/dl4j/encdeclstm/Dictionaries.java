@@ -2,7 +2,6 @@ package com.isaac.dl4j.encdeclstm;
 
 import java.io.IOException;
 import java.util.*;
-import java.util.stream.Collectors;
 
 import static com.isaac.dl4j.encdeclstm.EncoderDecoderLSTM.obtainFilePath;
 
@@ -75,6 +74,7 @@ class Dictionaries {
                 List<String> words = new ArrayList<>();
                 tokenizeLine(lastLine, words, true);
                 // modify to following one, since wordsToIndexes(words) may return empty, cause "Invalid Shape Error" in CorpusIterator
+                // Details are shown in the error.log located at `resources/encdec/error.log`
                 //corpus.add(wordsToIndexes(words));
                 List<Double> wordsIndexes = wordsToIndexes(words);
                 if (!wordsIndexes.isEmpty())
