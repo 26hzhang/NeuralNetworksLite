@@ -20,6 +20,7 @@ import org.deeplearning4j.nn.layers.recurrent.GravesLSTM;
 import org.deeplearning4j.optimize.listeners.ScoreIterationListener;
 import org.deeplearning4j.util.ModelSerializer;
 import org.nd4j.linalg.api.ndarray.INDArray;
+import org.nd4j.linalg.dataset.api.MultiDataSet;
 import org.nd4j.linalg.factory.Nd4j;
 
 public class EncoderDecoderLSTM {
@@ -29,10 +30,10 @@ public class EncoderDecoderLSTM {
     private static final String MODEL_FILENAME = "rnn_train.zip";
     /** filename of the previous version of the model (backup) */
     private static final String BACKUP_MODEL_FILENAME = "rnn_train.bak.zip";
-    private static final int MINIBATCH_SIZE = 32;
+    private static final int MINIBATCH_SIZE = 128; //32;
     private static final Random rnd = new Random(new Date().getTime());
-    private static final long SAVE_EACH_MS = TimeUnit.MINUTES.toMillis(5); // save the model with this period
-    private static final long TEST_EACH_MS = TimeUnit.MINUTES.toMillis(1); // test the model with this period
+    private static final long SAVE_EACH_MS = TimeUnit.MINUTES.toMillis(60); // save the model with this period
+    private static final long TEST_EACH_MS = TimeUnit.MINUTES.toMillis(5); // test the model with this period
     /** maximum line length in tokens */
     private static final int ROW_SIZE = 40;
     /**
@@ -111,7 +112,7 @@ public class EncoderDecoderLSTM {
         while (true) {
             System.out.print("In> ");
             // input line is appended to conform to the corpus format
-            String line = "1 +++$+++ u11 +++$+++ m0 +++$+++ WALTER +++$+++ " + scanner.nextLine() + "\n";
+            String line = "1 +++$+++ u11 +++$+++ m0 +++$+++ User +++$+++ " + scanner.nextLine() + "\n";
             CorpusProcessor dialogProcessor = new CorpusProcessor(new
                     ByteArrayInputStream(line.getBytes(StandardCharsets.UTF_8)), ROW_SIZE, false) {
                 @Override

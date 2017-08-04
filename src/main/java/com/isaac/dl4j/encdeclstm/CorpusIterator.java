@@ -1,6 +1,7 @@
 package com.isaac.dl4j.encdeclstm;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -13,7 +14,6 @@ import org.nd4j.linalg.factory.Nd4j;
 import org.nd4j.linalg.indexing.INDArrayIndex;
 import org.nd4j.linalg.indexing.NDArrayIndex;
 
-@SuppressWarnings("serial")
 public class CorpusIterator implements MultiDataSetIterator {
     /*
      * Motivation: I want to get asynchronous data iteration while not blocking on net.fit() until the end of epoch.
@@ -75,7 +75,7 @@ public class CorpusIterator implements MultiDataSetIterator {
             rowPred.add(1.0); // add <eos> token
             // replace the entire row in "input" using NDArrayIndex, it's faster than putScalar(); input is NOT made of
             // one-hot vectors because of the embedding layer that accepts token indexes directly
-            input.put(new INDArrayIndex[] { NDArrayIndex.point(j), NDArrayIndex.point(0),
+            input.put(new INDArrayIndex[] { NDArrayIndex.point(j), NDArrayIndex.point(0), // TODO error
                             NDArrayIndex.interval(0, rowIn.size()) },
                     Nd4j.create(ArrayUtils.toPrimitive(rowIn.toArray(new Double[0]))));
             inputMask.put(new INDArrayIndex[] { NDArrayIndex.point(j), NDArrayIndex.interval(0, rowIn.size()) },
@@ -90,10 +90,8 @@ public class CorpusIterator implements MultiDataSetIterator {
             int predIdx = 0;
             for (Double pred : rowPred) {
                 predOneHot[pred.intValue()][predIdx] = 1;
-                if (predIdx < rowPred.size() - 1) {
-                    // put the same vals to decode with +1 offset except the last token that is <eos>
-                    decodeOneHot[pred.intValue()][predIdx + 1] = 1;
-                }
+                // put the same vals to decode with +1 offset except the last token that is <eos>
+                if (predIdx < rowPred.size() - 1) { decodeOneHot[pred.intValue()][predIdx + 1] = 1; }
                 ++predIdx;
             }
             prediction.put(new INDArrayIndex[] { NDArrayIndex.point(j), NDArrayIndex.interval(0, dictSize),
@@ -108,19 +106,14 @@ public class CorpusIterator implements MultiDataSetIterator {
     }
 
     @Override
-    public void setPreProcessor(MultiDataSetPreProcessor preProcessor) {
-        throw new UnsupportedOperationException("Not Implemented");
-    }
+    public void setPreProcessor(MultiDataSetPreProcessor preProcessor) { throw new UnsupportedOperationException("Not Implemented"); }
 
     @Override
-    public boolean resetSupported() {
-        // we don't want this iterator to be reset on each macrobatch pseudo-epoch
-        return false;
-    }
+    public boolean resetSupported() { return false; } // we don't want this iterator to be reset on each macrobatch pseudo-epoch
 
     @Override
     public boolean asyncSupported() {
-        return true;
+        return false;
     }
 
     @Override
@@ -143,12 +136,8 @@ public class CorpusIterator implements MultiDataSetIterator {
         currentMacroBatch = getMacroBatchByCurrentBatch();
     }
 
-    public boolean hasNextMacrobatch() {
-        return getMacroBatchByCurrentBatch() < totalMacroBatches && currentMacroBatch < totalMacroBatches;
-    }
+    public boolean hasNextMacrobatch() { return getMacroBatchByCurrentBatch() < totalMacroBatches && currentMacroBatch < totalMacroBatches; }
 
-    public void nextMacroBatch() {
-        ++currentMacroBatch;
-    }
+    public void nextMacroBatch() { ++currentMacroBatch; }
 
 }

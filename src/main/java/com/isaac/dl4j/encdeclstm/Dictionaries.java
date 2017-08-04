@@ -2,6 +2,7 @@ package com.isaac.dl4j.encdeclstm;
 
 import java.io.IOException;
 import java.util.*;
+import java.util.stream.Collectors;
 
 import static com.isaac.dl4j.encdeclstm.EncoderDecoderLSTM.obtainFilePath;
 
@@ -56,9 +57,8 @@ class Dictionaries {
             }
             if (cnt >= MAX_DICT) break;
         }
-        // all of the above means that the dictionary with the same MAX_DICT constraint and made from the same source file
-        // will always be the same, the tokens always correspond to the same number so we don't need to save/restore the
-        // dictionary
+        // all of the above means that the dictionary with the same MAX_DICT constraint and made from the same source file will
+        // always be the same, the tokens always correspond to the same number so we don't need to save/restore the dictionary
         System.out.println("Dictionary is ready, size is " + dictSet.size());
         // index the dictionary and build the reverse dictionary for lookups
         for (String word : dictSet) {
@@ -74,7 +74,11 @@ class Dictionaries {
             protected void processLine(String lastLine) {
                 List<String> words = new ArrayList<>();
                 tokenizeLine(lastLine, words, true);
-                corpus.add(wordsToIndexes(words));
+                // modify to following one, since wordsToIndexes(words) may return empty, cause "Invalid Shape Error" in CorpusIterator
+                //corpus.add(wordsToIndexes(words));
+                List<Double> wordsIndexes = wordsToIndexes(words);
+                if (!wordsIndexes.isEmpty())
+                    corpus.add(wordsIndexes);
             }
         };
         corpusProcessor.setDict(dict);

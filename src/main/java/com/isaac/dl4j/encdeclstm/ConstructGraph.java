@@ -1,6 +1,5 @@
 package com.isaac.dl4j.encdeclstm;
 
-
 import org.deeplearning4j.nn.api.OptimizationAlgorithm;
 import org.deeplearning4j.nn.conf.*;
 import org.deeplearning4j.nn.conf.graph.MergeVertex;

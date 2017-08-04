@@ -46,17 +46,12 @@ public class CorpusProcessor {
                     if (lineSplit[1].equals(lastName)) {
                         if (!lastLine.isEmpty()) {
                             // if the previous line doesn't end with a special symbol, append a comma and the current line
-                            if (!SPECIALS.contains(lastLine.substring(lastLine.length() - 1))) {
-                                lastLine = lastLine.concat(",");
-                            }
+                            if (!SPECIALS.contains(lastLine.substring(lastLine.length() - 1))) { lastLine = lastLine.concat(","); }
                             lastLine = lastLine.concat(" " + lineSplit[4]);
-                        } else {
-                            lastLine = lineSplit[4];
-                        }
+                        } else { lastLine = lineSplit[4]; }
                     } else {
-                        if (lastLine.isEmpty()) {
-                            lastLine = lineSplit[4];
-                        } else {
+                        if (lastLine.isEmpty()) { lastLine = lineSplit[4]; }
+                        else {
                             processLine(lastLine);
                             lastLine = lineSplit[4];
                         }
@@ -84,36 +79,25 @@ public class CorpusProcessor {
                         specialFound = false;
                         if (idx >= 0) {
                             String word1 = word.substring(0, i);
-                            if (!word1.isEmpty()) {
-                                addWord(resultCollection, word1);
-                            }
-                            if (addSpecials) {
-                                addWord(resultCollection, String.valueOf(word.charAt(i)));
-                            }
+                            if (!word1.isEmpty()) { addWord(resultCollection, word1); }
+                            if (addSpecials) { addWord(resultCollection, String.valueOf(word.charAt(i))); }
                             word = word.substring(i + 1);
                             specialFound = true;
                             break;
                         }
                     }
                 }
-                if (!word.isEmpty()) {
-                    addWord(resultCollection, word);
-                }
+                if (!word.isEmpty()) { addWord(resultCollection, word); }
             }
         }
     }
 
     private void addWord(Collection<String> coll, String word) {
-        if (coll != null) {
-            coll.add(word);
-        }
+        if (coll != null) { coll.add(word); }
         if (countFreq) {
             Double count = freq.get(word);
-            if (count == null) {
-                freq.put(word, 1.0);
-            } else {
-                freq.put(word, count + 1);
-            }
+            if (count == null) { freq.put(word, 1.0); }
+            else { freq.put(word, count + 1); }
         }
     }
 
@@ -140,15 +124,10 @@ public class CorpusProcessor {
         int i = rowSize;
         final List<Double> wordIdxs = new LinkedList<>();
         for (final String word : words) {
-            if (--i == 0) {
-                break;
-            }
+            if (--i == 0) { break; }
             final Double wordIdx = dict.get(word);
-            if (wordIdx != null) {
-                wordIdxs.add(wordIdx);
-            } else {
-                wordIdxs.add(0.0);
-            }
+            if (wordIdx != null) { wordIdxs.add(wordIdx); }
+            else { wordIdxs.add(0.0); }
         }
         return wordIdxs;
     }
