@@ -12,6 +12,7 @@
       <w>denoising</w>
       <w>encdec</w>
       <w>encdeclstm</w>
+      <w>finetune</w>
       <w>freqs</w>
       <w>hgiven</w>
       <w>idxs</w>
@@ -35,6 +36,7 @@
       <w>rnns</w>
       <w>rosenblatt</w>
       <w>softmax</w>
+      <w>tanh</w>
       <w>tbptt</w>
       <w>vals</w>
       <w>vectorize</w>

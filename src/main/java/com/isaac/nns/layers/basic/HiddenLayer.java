@@ -4,6 +4,7 @@ package com.isaac.nns.layers.basic;
 import com.isaac.nns.initialization.ActivationFunction;
 import com.isaac.nns.utils.RandomGenerator;
 
+import java.util.Objects;
 import java.util.Random;
 import java.util.function.DoubleFunction;
 
@@ -29,22 +30,21 @@ public class HiddenLayer {
 				}
 			}
 		}
-		if (b == null)
-			b = new double[nOut];
+		if (b == null) b = new double[nOut];
 		this.nIn = nIn;
 		this.nOut = nOut;
 		this.W = W;
 		this.b = b;
 		this.rng = rng;
-		if (activation == "sigmoid" || activation == null) {
-			this.activation = (double x) -> ActivationFunction.sigmoid(x);
-			this.dactivation = (double x) -> ActivationFunction.dsigmoid(x);
-		} else if (activation == "tanh") {
-			this.activation = (double x) -> ActivationFunction.tanh(x);
-			this.dactivation = (double x) -> ActivationFunction.dtanh(x);
-		} else if (activation == "ReLU") {
-            this.activation = (double x) -> ActivationFunction.ReLU(x);
-            this.dactivation = (double x) -> ActivationFunction.dReLU(x);
+		if (activation == null || activation.equals("sigmoid")) {
+			this.activation = ActivationFunction::sigmoid;
+			this.dactivation = ActivationFunction::dsigmoid;
+		} else if (activation.equals("tanh")) {
+			this.activation = ActivationFunction::tanh;
+			this.dactivation = ActivationFunction::dtanh;
+		} else if (activation.equals("ReLU")) {
+            this.activation = ActivationFunction::ReLU;
+            this.dactivation = ActivationFunction::dReLU;
         } else {
 			throw new IllegalArgumentException("activation function not supported");
 		}

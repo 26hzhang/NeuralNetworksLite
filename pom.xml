@@ -45,17 +45,6 @@
             <artifactId>datavec-dataframe</artifactId>
             <version>${deeplearning4j.version}</version>
         </dependency>
-        <!-- Spark related dependencies -->
-        <!--<dependency>
-            <groupId>org.apache.spark</groupId>
-            <artifactId>spark-core_2.10</artifactId>
-            <version>2.1.1</version>
-        </dependency>
-        <dependency>
-            <groupId>org.datavec</groupId>
-            <artifactId>datavec-spark_2.11</artifactId>
-            <version>0.8.0_spark_2</version>
-        </dependency>-->
         <!-- SLF4J -->
         <dependency>
             <groupId>org.slf4j</groupId>
