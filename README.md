@@ -1,4 +1,7 @@
 # Neural Networks Lite
+
+![Authour](https://img.shields.io/badge/Author-Zhang%20Hao%20(Isaac%20Changhau)-blue.svg)
+
 A Java implementation practice of the neural network techniques, which contains several neural networks algorithms:
 * (Multi-Layer) Perceptrons
 * Logistic Regression
