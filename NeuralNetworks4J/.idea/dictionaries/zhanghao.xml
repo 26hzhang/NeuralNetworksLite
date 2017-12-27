@@ -1,0 +1,24 @@
+<component name="ProjectDictionaryState">
+  <dictionary name="zhanghao">
+    <words>
+      <w>argmax</w>
+      <w>convpool</w>
+      <w>dactivation</w>
+      <w>dactive</w>
+      <w>dleakyrelu</w>
+      <w>downsampled</w>
+      <w>drelu</w>
+      <w>dsigmoid</w>
+      <w>dtanh</w>
+      <w>getn</w>
+      <w>hbias</w>
+      <w>leakyrelu</w>
+      <w>logits</w>
+      <w>relu</w>
+      <w>setn</w>
+      <w>unflatten</w>
+      <w>vbias</w>
+      <w>wprev</w>
+    </words>
+  </dictionary>
+</component>
