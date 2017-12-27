@@ -77,3 +77,5 @@ Among this three projects, which generally contains several following neural net
 * Wiki-Link: [Recurrent Neural Network](https://en.wikipedia.org/wiki/Recurrent_neural_network), [Long Short-Term Memory](https://en.wikipedia.org/wiki/Long_short-term_memory).
 * Usage: [dl4j-rnns](https://deeplearning4j.org/usingrnns).
 * Paper: [Bidirectional Recurrent Neural Networks](https://maxwell.ict.griffith.edu.au/spl/publications/papers/ieeesp97_schuster.pdf), [Long Short-Term Memory](https://www.researchgate.net/publication/13853244_Long_Short-term_Memory), [Jürgen Schmidhuber](http://people.idsia.ch/~juergen/rnn.html)'s page.
+
+**Reference**: [Java Deep Learning Essentials](https://github.com/PacktPublishing/Java-Deep-Learning-Essentials)
